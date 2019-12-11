@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!-->Paquetería publica, la cual contara con acciones que no requieran de una sesión<-->
+
+    <package name="default" extends="struts-default">
+        <action name="IniciarSesion" class="com.utez.edu.mx.sesion.controller.IniciarSesionAction"
+                method="IniciarSesion">
+            <result name="RPBSI" type="redirectAction">
+                <param name="actionName">inicio_rpbsi</param>
+                <param name="mensaje">${mensaje}</param>
+            </result>
+
+            <result name="COMMON_USER" type="redirectAction">
+                <param name="actionName">inicio_common_user</param>
+                <param name="mensaje">${mensaje}</param>
+            </result>
+
+            <result name="error">
+                /index.jsp
+            </result>
+        </action>
+        <action name="CerrarSesion" class="com.utez.edu.mx.sesion.controller.IniciarSesionAction" method="CerrarSesion">
+            <result name="success">index.jsp</result>
+        </action>
+    </package>
+
+    <!-->Paquetería para metodos privados que requieran de una sesión activa<-->
+
+    <package name="privados" extends="struts-default,jasperreports-default">
+        <interceptors>
+            <interceptor name="sesionValida" class="com.utez.edu.mx.interceptor.InterceptorSesion"/>
+            <interceptor-stack name="miPilaDeInterceptores">
+                <interceptor-ref name="sesionValida"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="miPilaDeInterceptores"/>
+
+        <global-results>
+            <result name="NOLOGIN">
+                <param name="location">/index.jsp</param>
+                <param name="status">401</param>
+            </result>
+        </global-results>
+
+        <!-->CRUD de la gestión de usuarios<-->
+
+        <!-->Muestra los datos del usuario activo en la sesión y es la pagina de entrada del sistema al iniciar sesión<-->
+        <action name="inicio_rpbsi">
+            <result>/jsp/inicioAdmin.jsp</result>
+        </action>
+
+        <action name="inicio_common_user">
+            <result>/jsp/inicioNoAdmin.jsp</result>
+        </action>
+
+        <!-->Muestra una lista de usuarios registrados en el sistema<-->
+        <action name="MostrarUsuarios" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="MostrarUsuarios">
+            <result name="success">/jsp/gestionUsuarios/indexUsuarios.jsp</result>
+        </action>
+
+        <!-->Elimina logicamente el usuario en el sistema<-->
+        <action name="EliminarUsuarios" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="EliminarUsuarios">
+            <result type="redirectAction" name="success">MostrarUsuarios</result>
+            <result type="redirectAction" name="error">MostrarUsuarios</result>
+        </action>
+
+        <!-->Obtiene los datos de un usuario por medio de su ID para su uso posterior en la acción ModificarUsuario<-->
+        <action name="MostrarFormularioModificar" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="MostrarFormularioModificar">
+            <result name="success">/jsp/gestionUsuarios/modificarUsuario.jsp</result>
+        </action>
+
+        <!-->Modifica los usuarios en el sistema, esta acción se ejecuta despues de obtener los datos el usuario en la acción MostrarFormularioModificar<-->
+        <action name="ModificarUsuario" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="ModificarUsuario">
+            <result name="success" type="redirectAction">MostrarUsuarios</result>
+            <result name="error" type="redirectAction">MostrarUsuarios</result>
+        </action>
+
+        <!-->Activa el logicamente el usuario en el sistema<-->
+        <action name="ActivarUsuario" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="ActivarUsuario">
+            <result name="success" type="redirectAction">MostrarUsuarios</result>
+        </action>
+
+        <!-->Aquí termina el CRUD de Usuarios<-->
+
+        <!--Struts crud bien-->
+
+        <action name="MostrarBienes" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="MostrarBienes">
+            <result name="success">/jsp/gestionBienes/indexBienes.jsp</result>
+        </action>
+
+        <action name="InsertarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="InsertarBien">
+            <result type="redirectAction" name="success">MostrarBienes</result>
+            <result type="redirectAction" name="error">MostrarBienes</result>
+        </action>
+
+        <action name="EliminarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="EliminarBien">
+            <result type="redirectAction" name="success">MostrarBienes</result>
+            <result type="redirectAction" name="error">MostrarBienes</result>
+        </action>
+
+        <!--<action name="ConsultaEspecificaBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="ConsultaEspecificaBien">
+            <result name="success"></result>
+        </action>-->
+
+        <action name="ModificarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="ModificarBien">
+            <result name="success" type="redirectAction">MostrarBienes</result>
+            <result name="error" type="redirectAction">MostrarBienes</result>
+        </action>
+
+        <!--<action name="MostrarFormularioModificarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="MostrarFormularioModificar">
+            <result name="success">/jsp/gestionUsuarios/modificarUsuario.jsp</result>
+        </action>-->
+
+        <action name="consultarProyectos" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="consultarProyectos">
+            <result name="success">/jsp/gestionProyecto/indexProyecto.jsp</result>
+        </action>
+
+        <action name="registrarProyecto" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="registrarProyecto">
+            <result type="redirectAction" name="success">consultarProyectos</result>
+        </action>
+
+        <action name="eliminarProyecto" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="eliminarProyecto">
+            <result type="redirectAction" name="success">consultarProyectos</result>
+            <result type="redirectAction" name="error">consultarProyectos</result>
+        </action>
+
+        <action name="activarProyecto" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="activarProyecto">
+            <result type="redirectAction" name="success">consultarProyectos</result>
+
+        </action>
+
+        <action name="modificarProyecto" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="modificarProyecto">
+            <result name="success" type="redirectAction">consultarProyectos</result>
+            <result name="error" type="redirectAction">consultarProyectos</result>
+        </action>
+
+
+        <action name="consultarEspacioFisicos"
+                class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="consultarEspacioFisico">
+            <result name="success">/jsp/gestionEspacioFisico/indexEspacioFisico.jsp</result>
+        </action>
+
+        <action name="registrarEspacioFisico"
+                class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="registrarEspacioFisico">
+            <result type="redirectAction" name="success">consultarEspacioFisicos</result>
+        </action>
+
+        <action name="eliminarEspacioFisico"
+                class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="eliminarEspacioFisico">
+            <result type="redirectAction" name="success">consultarEspacioFisicos</result>
+        </action>
+
+        <action name="activarEspacioFisico" class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="activarEspacioFisico">
+            <result type="redirectAction" name="success">consultarEspacioFisicos</result>
+
+        </action>
+
+        <action name="modificarEspacioFisico"
+                class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="modificarEspacioFisico">
+            <result name="success" type="redirectAction">consultarEspacioFisicos</result>
+            <result name="error" type="redirectAction">consultarEspacioFisicos</result>
+        </action>
+
+
+
+        <!-- REPORTE ADMINISTRADOR-->
+        <action name="reporteAdministrador" class="com.utez.edu.mx.reportesAction.adminAction" method="reporteAdministrador">
+            <result name="success" type="jasper">
+                <param name="location">/reportes/reporte.jasper</param>
+                <param name="dataSource">myList</param>
+                <param name="connection">conexion</param>
+                <param name="reportParameters">parametros</param>
+                <param name="format">PDF</param>
+            </result>
+        </action>
+
+        <!-- REPORTE RESPONSABLES-->
+        <action name="reporteResponsables" class="com.utez.edu.mx.reportesAction.usuariosAction" method="reporteResponsables">
+            <result name="success" type="jasper">
+                <param name="location">/reportes/reporteResponsables.jasper</param>
+                <param name="dataSource">myList</param>
+                <param name="connection">conexion</param>
+                <param name="reportParameters">parametros</param>
+                <param name="format">PDF</param>
+            </result>
+        </action>
+
+        <!-- REPORTE ASIGNADOS-->
+        <action name="reporteAsignados" class="com.utez.edu.mx.reportesAction.usuariosActionAsignados" method="reporteAsignados">
+            <result name="success" type="jasper">
+                <param name="location">/reportes/reporteAsignados.jasper</param>
+                <param name="dataSource">myList</param>
+                <param name="connection">conexion</param>
+                <param name="reportParameters">parametros</param>
+                <param name="format">PDF</param>
+            </result>
+        </action>
+    </package>
+
+    <package name="json-request-public" extends="struts-default, json-default">
+        <action name="EnviarEmail" class="com.utez.edu.mx.servicios.controller.ControllerService" method="EnviarEmail">
+            <result name="success" type="json"/>
+        </action>
+        <action name="VerificarToken" class="com.utez.edu.mx.servicios.controller.ControllerService"
+                method="VerificarToken">
+            <result name="success" type="json"/>
+        </action>
+        <action name="CambiarContrasena" class="com.utez.edu.mx.servicios.controller.ControllerService"
+                method="CambiarContrasena">
+            <result name="success" type="json"/>
+        </action>
+        <action name="CorreoExiste" class="com.utez.edu.mx.servicios.controller.ControllerService"
+                method="CorreoExiste">
+            <result name="success" type="json"/>
+        </action>
+        <action name="ModificarUsuarioJson" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="ModificarUsuario">
+            <result name="success" type="json"/>
+        </action>
+
+        <action name="MostrarBienes" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="MostrarBienes">
+            <result name="success">/jsp/gestionBienes/indexBienes.jsp</result>
+        </action>
+
+        <action name="InsertarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="InsertarBien">
+            <result type="redirectAction" name="success">MostrarBienes</result>
+            <result type="redirectAction" name="error">MostrarBienes</result>
+        </action>
+
+        <action name="EliminarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="EliminarBien">
+            <result type="redirectAction" name="success">MostrarBienes</result>
+            <result type="redirectAction" name="error">MostrarBienes</result>
+        </action>
+
+        <action name="activarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction"
+                method="activarBien">
+            <result type="redirectAction" name="success">MostrarBienes</result>
+
+        </action>
+
+        <action name="ModificarBien" class="com.utez.edu.mx.domains.bien.controller.BienAction" method="ModificarBien">
+            <result name="success" type="redirectAction">MostrarBienes</result>
+            <result name="error" type="redirectAction">MostrarBienes</result>
+        </action>
+
+        <!--Asignaciones-->
+        <action name="ConsultaAsignaciones" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction" method="LlenarSpinners">
+            <result name="success">/jsp/gestionAsignaciones/indexAsignaciones.jsp</result>
+        </action>
+
+        <action name="InsertarAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction" method="InsertarAsignacion">
+            <result name="success" type="redirectAction">ConsultaAsignaciones</result>
+            <result name="error" type="redirectAction">ConsultaAsignaciones</result>
+        </action>
+
+        <action name="ModificarAsignacion"
+                class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction" method="MdificarAsignacion">
+            <result name="success" type="redirectAction">ConsultaAsignaciones</result>
+            <result name="error" type="redirectAction">ConsultaAsignaciones</result>
+        </action>
+
+        <action name="desactivarAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
+                method="desabilitarAsignacion">
+            <result type="redirectAction" name="success">ConsultaAsignaciones</result>
+        </action>
+
+        <action name="activarAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
+                method="activarAsignacion">
+            <result type="redirectAction" name="success">ConsultaAsignaciones</result>
+
+        </action>
+        <!--Asignaciones-->
+
+
+    </package>
+
+
+
+    <!-->Paqueteria de metodos json con el cual debas contener una sesión activa para ser usados,<-->
+    <!-->el cual almacena los metodos que requieren ser asincronos<-->
+
+    <package name="json-request-private" extends="struts-default, json-default">
+        <interceptors>
+            <interceptor name="sesionValida" class="com.utez.edu.mx.interceptor.InterceptorSesion"/>
+            <interceptor-stack name="miPilaDeInterceptores">
+                <interceptor-ref name="sesionValida"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="miPilaDeInterceptores"/>
+
+        <global-results>
+            <result name="NOLOGIN">
+                <param name="location">/index.jsp</param>
+                <param name="status">401</param>
+            </result>
+        </global-results>
+
+        <action name="ConfirmarUsuario" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="ConfirmarUsuario">
+            <result name="success" type="json"/>
+        </action>
+
+        <!-->Ingresa usuarios nuevos a el sistema<-->
+        <action name="InsertarUsuarios" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="InsertarUsuarios">
+            <result name="success" type="json"/>
+        </action>
+
+        <!-->Obtiene los datos de un usuario por medio de su ID para sus diferentes usos en los metodos del sistema<-->
+        <action name="MostrarUsuarioId" class="com.utez.edu.mx.domains.usuario.controller.UsuarioAction"
+                method="MostrarUsuarioId">
+            <result name="success" type="json"/>
+        </action>
+
+        <action name="consultarProyectoPorId" class="com.utez.edu.mx.domains.proyecto.controller.ProyectoAction"
+                method="consultarProyectoPorId">
+            <result type="json" name="success"></result>
+        </action>
+        <action name="consultarEspacioFisicoPorId"
+                class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
+                method="consultarEspacioFisicoPorId">
+            <result type="json" name="success"></result>
+        </action>
+
+        <action name="consultarDatos" class="com.utez.edu.mx.domains.bien.controller.BienAction"
+                method="ConsultaEspecificaBien">
+            <result type="json" name="success"></result>
+        </action>
+
+        <action name="ConsultaEspecificaAsignacionModificar" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
+                method="ConsultaEspecificaAsignacionModificar">
+            <result type="json" name="success"></result>
+        </action>
+
+        <action name="ConsultaEspecificaAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
+                method="ConsultaEspecificaAsignacion">
+            <result type="json" name="success"></result>
+        </action>
+    </package>
+</struts>

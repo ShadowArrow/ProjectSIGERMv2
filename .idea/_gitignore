@@ -1,0 +1,11 @@
+
+# Default ignored files
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+# Datasource local storage ignored files
+/dataSources.local.xml
+../src/propiedadesMySQL.properties
+../src/procedimientos.sql
+../src/GestionBienes.sql
+

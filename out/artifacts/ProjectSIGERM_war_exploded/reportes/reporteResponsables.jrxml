@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAsignados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="94163bd4-6781-4e37-a31b-247a98081db4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="278"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="709"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#3E91DE">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<rightPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#3E91DE">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<rightPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<rightPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<subDataset name="responsables" uuid="4bca282a-b1c9-464d-a149-2811efdb73df">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="247"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="741"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT codigo_inventario,bien.nombre,descripcion,precio,marca,modelo,no_serie,usuario.nombre,
+usuario.primer_apellido,usuario.segundo_apellido
+FROM Bien as bien INNER JOIN Asignacion 
+ON Bien.id_bien= Asignacion.id_bien INNER JOIN Usuario AS usuario ON usuario.id_usuario= Asignacion.id_usuario_responsable ]]>
+		</queryString>
+		<field name="codigo_inventario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="codigo_inventario"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="precio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="precio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="marca" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="marca"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="modelo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="modelo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+		<field name="no_serie" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="no_serie"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+		</field>
+	</subDataset>
+	<parameter name="idusuario" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT codigo_inventario,bien.nombre,descripcion,precio,marca,modelo,no_serie,usuario.horario_labores,usuario.nombre AS nombreUsuario,
+usuario.primer_apellido,usuario.segundo_apellido
+FROM Bien as bien INNER JOIN Asignacion 
+ON Bien.id_bien= Asignacion.id_bien INNER JOIN Usuario AS usuario ON usuario.id_usuario= Asignacion.id_usuario_responsable]]>
+	</queryString>
+	<field name="codigo_inventario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codigo_inventario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="precio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="precio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="marca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="modelo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="no_serie" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="no_serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bien"/>
+	</field>
+	<field name="horario_labores" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="horario_labores"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="nombreUsuario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombreUsuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="primer_apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="primer_apellido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="segundo_apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="segundo_apellido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="5" width="272" height="36" uuid="5679f98f-0348-46e4-a729-b0d132b419ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD TECNOLÓGICA EMILIANO ZAPATA 
+DEL ESTADO DE MORELOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="41" width="271" height="30" uuid="10d55745-450e-4e79-8ca4-53a9f6e045c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Organismo Público Descentralizado del Gobierno del Estado de Morelos ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="73" width="240" height="30" uuid="7d472aed-6290-4a7c-a9d2-aee772f7d1d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESGUARDO INDIVIDUAL DE ACTIVO FIJO]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="0" width="110" height="90" uuid="322dd200-f683-4ff0-b75b-a3e013ea65b0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://localhost:8080/ProjectSIGERM_war_exploded/img/logo-utez.png"]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="460" y="0" width="94" height="90" uuid="46af50f2-a6ae-483b-be89-e8acbc882c26">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://localhost:8080/ProjectSIGERM_war_exploded/img/cds.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="4" width="240" height="30" uuid="dc5bce6b-2a00-4ad3-8fa9-2b36643ebd96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CENTRO DE DESARROLLO DE SOFTWARE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="40" width="48" height="25" uuid="d164f490-1779-47ab-90fe-826bb70b14a7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="230" y="82" width="171" height="25" uuid="669e54ac-28a4-405e-90a7-02645521af08"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="82" width="40" height="25" uuid="add1edaa-0351-419d-9947-9f5fc9d44edc"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="44" width="110" height="25" uuid="eabc6052-88db-47af-9435-6e351355237b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORARIO LABORES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="204" y="42" width="69" height="22" uuid="79390818-239f-4b65-8d5d-1bb23bd7ea1b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{segundo_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="41" width="55" height="23" uuid="a6d691d8-edf5-43c7-8d31-e9e4e1c6b529"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{primer_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="41" width="62" height="24" uuid="fc87f6f1-dcc3-4820-bf10-753f9840491c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreUsuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="44" width="100" height="25" uuid="c3c6a2b9-dbf3-44f6-8c27-8111636d1a66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horario_labores}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="236" splitType="Stretch">
+			<componentElement>
+				<reportElement x="3" y="10" width="549" height="110" uuid="bb852be2-1757-4157-b453-f2ea843246e2">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="responsables" uuid="c1e6f7ba-fbd2-4c7c-ba1b-aba0a2695b3d">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="80" uuid="8662f8a9-e9a0-424a-a724-38d6e12c684f">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="30" forecolor="#FFFFFF" uuid="a14289b9-4f14-4845-8e50-a4bd5f824266"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Código de inventario]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="80" height="30" uuid="f7e70cb1-2f27-461e-a7a4-f8b892e2bf08"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{codigo_inventario}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="96b4fbb2-5b4c-4df8-8418-d50c496251c3">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="79" height="30" forecolor="#FFFFFF" uuid="82a4e1c4-0ce9-4687-b1c2-57bfe039dbf0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Nombre]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="79" height="30" uuid="f8df1f72-6621-468a-b646-484c36f6afd3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="d603ec39-9c02-4893-bca7-a74b7b5e405e">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="733d6434-8d65-491f-8703-e9577f778bed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Descripción]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="78" height="30" uuid="63c08346-5b17-49e3-a933-7a0f31ac7961"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="e5ac8a26-bb39-48b4-ba2d-b1b69f27823b">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="133fa82b-e03f-4444-8a8c-833ba819b135"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[RESPONSABLE DE BIENES MATERIALES ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="3f4cbcc7-d0e5-4cb1-8ef1-6e3726e6492e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Precio]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="78" height="30" uuid="4d48afcc-931e-4a25-bc0f-f38ef7cff24f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="4cb0e574-7951-41f8-b283-a1d4d1ad03ea">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="240374e3-a2b7-44f1-b723-859e651ec0f7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Marca]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="78" height="30" uuid="57da84e6-0640-43f5-9731-e902f5d76e43"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="d9d11072-78df-4326-8238-654a6f276769">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="d18e5d07-9bda-4776-b047-4f6009b019c9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Modelo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="78" height="30" uuid="f68d951d-eadc-4dc5-9489-3bb1f747562c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="14d4f072-3a40-48df-8e3b-537938f3b2c7">
+						<jr:tableHeader style="Table_TH" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</jr:tableHeader>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="78" height="30" forecolor="#FFFFFF" uuid="615f9c01-26db-4be5-bfe4-454bd03d60a4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[No. serie]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="78" height="30" uuid="e7d18fa7-0211-4807-a0d2-90a19dbc738c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{no_serie}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="5" width="544" height="70" uuid="a228074e-b134-4b2d-9953-eceec0827b6a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[A través del presente me comprometo como responsable directo del uso y cuidado de los bienes asignados a mi cargo y en caso de incumplimiento acepto la sanción que corresponda de acuerdo a la normatividad vigente; así mismo, en caso de baja por cualquier motivo, estoy obligado a entregar sin demora los bienes que ampara este resguardo a fin de que sea extendido el PLIEGO DE NO RESPONSABILIDAD. De igual manera, me obligo a notificar de forma inmediata y formal al departamento responsable de inventarios de bienes, muebles e inmuebles cualquier movimiento y/o baja de los bienes asignados.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="108">
+			<staticText>
+				<reportElement x="194" y="30" width="170" height="30" uuid="06b14350-9354-489a-9e1d-a651b696939a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y firma del servidor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="69" width="62" height="24" uuid="1160dc99-7699-42ba-a484-f39bf9caf14b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreUsuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="70" width="69" height="22" uuid="8e347157-b970-45ec-8b3e-d6582fc65571"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{segundo_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="70" width="55" height="23" uuid="95dade72-d17a-4496-9c27-fcf531470af6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{primer_apellido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
