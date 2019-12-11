@@ -119,7 +119,7 @@
             <!-- side-menu -->
             <ul class="nav" id="side-menu">
                 <li class="" style="padding-top: 15px; padding-left: -15px;">
-                    <a href="<%=context%>/jsp/inicioNoAdmin.jsp">
+                    <a href="<%=context%>/inicio_common_user">
                         <i class="fa fa-user fa-fw" aria-hidden="true"></i> Mi perfil
                     </a>
                 </li>
