@@ -245,7 +245,7 @@ public class AsignacionAction {
         for(int i = 0; i < listAsignacion.size(); i++){
             for(int j = 0; j < listBien.size(); j++) {
 
-                if (listBien.get(j).getId_bien() == listAsignacion.get(i).getBien().getId_bien()) {
+                if (listBien.get(j).getId_bien() == listAsignacion.get(i).getBien().getId_bien() && listAsignacion.get(i).getEstatus().equals("Activo")) {
                     listBien.remove(j);
                 }
             }
@@ -317,9 +317,36 @@ public class AsignacionAction {
     }
 
     public String activarAsignacion() {
-        if (dao.activarAsignacion(id_asignacion)) {
+        listAsignacion = dao.MostraAsignaciones();
+        for (int i=0; i<listAsignacion.size();i++){
+            if(listAsignacion.get(i).getId_asignacion() == id_asignacion){
+                bean = new BeanAsignacion();
+                bean = listAsignacion.get(i);
+            }
+        }
+        int v = 0;
+        for (int j=0; j<listAsignacion.size();j++){
+            if (
+                    (listAsignacion.get(j).getBien().getId_bien() == bean.getBien().getId_bien() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getBien().getEstatus().equals("Inactivo"))
+                    ||
+                            (listAsignacion.get(j).getUsuarioUtiliza().getId() == bean.getUsuarioUtiliza().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))
+                    ||
+                            (listAsignacion.get(j).getUsuarioResponsable().getId() == bean.getUsuarioResponsable().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))
+                    ||
+                            (listAsignacion.get(j).getEspacioFisico().getId_espacio_fisico() == bean.getEspacioFisico().getId_espacio_fisico() && listAsignacion.get(j).getEstatus().equals("Activo"))
+                            ||
+                            (listAsignacion.get(j).getProyecto().getId() == bean.getProyecto().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))){
+                v =1;
+                break;
+            }
+        }
+        if (v == 0) {
+            if(dao.activarAsignacion(id_asignacion)){
+                return SUCCESS;
+            }else{
+                return ERROR;
+            }
             /*mensaje = "Activación exitosa";*/
-            return SUCCESS;
         } else {
             /*mensaje = "Error al activar";*/
             return ERROR;

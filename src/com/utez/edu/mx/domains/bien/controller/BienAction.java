@@ -1,5 +1,7 @@
 package com.utez.edu.mx.domains.bien.controller;
 
+import com.utez.edu.mx.domains.asignacion.model.BeanAsignacion;
+import com.utez.edu.mx.domains.asignacion.model.DAOAsignacion;
 import com.utez.edu.mx.domains.bien.model.BeanBien;
 import com.utez.edu.mx.domains.bien.model.DAOBien;
 import com.utez.edu.mx.domains.rol.model.BeanRol;
@@ -15,6 +17,8 @@ public class BienAction {
     private String mensajeBien;
     private BeanBien bean = new BeanBien();
     private DAOBien dao = new DAOBien();
+    private DAOAsignacion daoAsignacion = new DAOAsignacion();
+    private List<BeanAsignacion> listAsignacion = new ArrayList<BeanAsignacion>();
     private List<BeanBien> listBien = new ArrayList<BeanBien>();
 private int id;
 
@@ -74,13 +78,26 @@ private int id;
     }
 
     public String EliminarBien() {
-        if (dao.EliminarBien(bean)) {
-            mensajeBien = "El usuario ha sido eliminado con exito";
-            return SUCCESS;
-        } else {
-            mensajeBien = "El usuario no ha sido eliminado con exito";
+        listAsignacion = daoAsignacion.MostraAsignaciones();
+        int v=0;
+        for (int i=0; i<listAsignacion.size(); i++){
+            if(listAsignacion.get(i).getBien().getId_bien() == bean.getId_bien() && listAsignacion.get(i).getEstatus().equals("Activo")){
+                v = 1;
+                break;
+            }
+        }
+        if (v==0){
+            if (dao.EliminarBien(bean)) {
+                mensajeBien = "El usuario ha sido eliminado con exito";
+                return SUCCESS;
+            } else {
+                mensajeBien = "El usuario no ha sido eliminado con exito";
+                return ERROR;
+            }
+        }else{
             return ERROR;
         }
+
     }
 
     public String ConsultaEspecificaBien(){

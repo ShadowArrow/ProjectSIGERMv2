@@ -284,11 +284,13 @@
         <action name="desactivarAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
                 method="desabilitarAsignacion">
             <result type="redirectAction" name="success">ConsultaAsignaciones</result>
+            <result type="redirectAction" name="error">ConsultaAsignaciones</result>
         </action>
 
         <action name="activarAsignacion" class="com.utez.edu.mx.domains.asignacion.controller.AsignacionAction"
                 method="activarAsignacion">
             <result type="redirectAction" name="success">ConsultaAsignaciones</result>
+            <result type="redirectAction" name="error">ConsultaAsignaciones</result>
 
         </action>
         <!--Asignaciones-->
