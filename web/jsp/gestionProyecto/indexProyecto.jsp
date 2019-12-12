@@ -2,26 +2,7 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <% String context = request.getContextPath();%>
 <html>
-<s:if test="mensaje=='registrar'">
-    <script>
-        alert("Registro exitoso");
-    </script>
-</s:if>
-<s:if test="mensaje=='modificar'">
-    <script>
-        alert("Modificación exitosa");
-    </script>
-</s:if>
-<s:if test="mensaje=='sin'">
-    <script>
-        alert("No existen registros");
-    </script>
-</s:if>
-<s:if test="mensaje=='error'">
-    <script>
-        alert("Ocurrió un error inesperado");
-    </script>
-</s:if>
+
 <s:if test="#session.usuario.correoInstitucional==null">
     <script>
         window.location.href = "<%=context%>/index.jsp";

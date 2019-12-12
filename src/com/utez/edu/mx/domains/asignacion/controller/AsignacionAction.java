@@ -219,31 +219,31 @@ public class AsignacionAction {
         listAsignacion = dao.MostraAsignaciones();
 
         listUsuario = daoUsuario.MostraUsuarios();
-        for(int i = 0; i < listUsuario.size(); i++){
-            if(listUsuario.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listUsuario.size(); i++) {
+            if (listUsuario.get(i).getEstatus().equals("Inactivo")) {
                 listUsuario.remove(i);
             }
         }
         listBien = daoBien.MostraBienes();
-        for(int i = 0; i < listBien.size(); i++){
-            if(listBien.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listBien.size(); i++) {
+            if (listBien.get(i).getEstatus().equals("Inactivo")) {
                 listBien.remove(i);
             }
         }
         listEspacioFisico = daoEspacioFisico.consultarEspacioFisicos();
-        for(int i = 0; i < listEspacioFisico.size(); i++){
-            if(listEspacioFisico.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listEspacioFisico.size(); i++) {
+            if (listEspacioFisico.get(i).getEstatus().equals("Inactivo")) {
                 listEspacioFisico.remove(i);
             }
         }
         listProyecto = daoProyecto.consultarProyectos();
-        for(int i = 0; i < listProyecto.size(); i++){
-            if(listProyecto.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listProyecto.size(); i++) {
+            if (listProyecto.get(i).getEstatus().equals("Inactivo")) {
                 listProyecto.remove(i);
             }
         }
-        for(int i = 0; i < listAsignacion.size(); i++){
-            for(int j = 0; j < listBien.size(); j++) {
+        for (int i = 0; i < listAsignacion.size(); i++) {
+            for (int j = 0; j < listBien.size(); j++) {
 
                 if (listBien.get(j).getId_bien() == listAsignacion.get(i).getBien().getId_bien() && listAsignacion.get(i).getEstatus().equals("Activo")) {
                     listBien.remove(j);
@@ -257,26 +257,26 @@ public class AsignacionAction {
         bean = dao.ConsultaEspecificaAsignacion(id_asignacion);
 
         listUsuario = daoUsuario.MostraUsuarios();
-        for(int i = 0; i < listUsuario.size(); i++){
-            if(listUsuario.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listUsuario.size(); i++) {
+            if (listUsuario.get(i).getEstatus().equals("Inactivo")) {
                 listUsuario.remove(i);
             }
         }
         listBien = daoBien.MostraBienes();
-        for(int i = 0; i < listBien.size(); i++){
-            if(listBien.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listBien.size(); i++) {
+            if (listBien.get(i).getEstatus().equals("Inactivo")) {
                 listBien.remove(i);
             }
         }
         listEspacioFisico = daoEspacioFisico.consultarEspacioFisicos();
-        for(int i = 0; i < listEspacioFisico.size(); i++){
-            if(listEspacioFisico.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listEspacioFisico.size(); i++) {
+            if (listEspacioFisico.get(i).getEstatus().equals("Inactivo")) {
                 listEspacioFisico.remove(i);
             }
         }
         listProyecto = daoProyecto.consultarProyectos();
-        for(int i = 0; i < listProyecto.size(); i++){
-            if(listProyecto.get(i).getEstatus().equals("Inactivo")){
+        for (int i = 0; i < listProyecto.size(); i++) {
+            if (listProyecto.get(i).getEstatus().equals("Inactivo")) {
                 listProyecto.remove(i);
             }
         }
@@ -298,10 +298,10 @@ public class AsignacionAction {
         }
     }
 
-    public String MdificarAsignacion(){
-        if(dao.ModificarAsignacion(bien, lugar, proyecto, utiliza, responsable, estatus, id_asignacion)){
+    public String MdificarAsignacion() {
+        if (dao.ModificarAsignacion(bien, lugar, proyecto, utiliza, responsable, estatus, id_asignacion)) {
             return SUCCESS;
-        }else{
+        } else {
             return ERROR;
         }
     }
@@ -318,32 +318,32 @@ public class AsignacionAction {
 
     public String activarAsignacion() {
         listAsignacion = dao.MostraAsignaciones();
-        for (int i=0; i<listAsignacion.size();i++){
-            if(listAsignacion.get(i).getId_asignacion() == id_asignacion){
+        for (int i = 0; i < listAsignacion.size(); i++) {
+            if (listAsignacion.get(i).getId_asignacion() == id_asignacion) {
                 bean = new BeanAsignacion();
                 bean = listAsignacion.get(i);
             }
         }
         int v = 0;
-        for (int j=0; j<listAsignacion.size();j++){
+        for (int j = 0; j < listAsignacion.size(); j++) {
             if (
                     (listAsignacion.get(j).getBien().getId_bien() == bean.getBien().getId_bien() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getBien().getEstatus().equals("Inactivo"))
-                    ||
-                            (listAsignacion.get(j).getUsuarioUtiliza().getId() == bean.getUsuarioUtiliza().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))
-                    ||
-                            (listAsignacion.get(j).getUsuarioResponsable().getId() == bean.getUsuarioResponsable().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))
-                    ||
-                            (listAsignacion.get(j).getEspacioFisico().getId_espacio_fisico() == bean.getEspacioFisico().getId_espacio_fisico() && listAsignacion.get(j).getEstatus().equals("Activo"))
                             ||
-                            (listAsignacion.get(j).getProyecto().getId() == bean.getProyecto().getId() && listAsignacion.get(j).getEstatus().equals("Activo"))){
-                v =1;
+                            (listAsignacion.get(j).getUsuarioUtiliza().getId() == bean.getUsuarioUtiliza().getId() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getUsuarioUtiliza().getEstatus().equals("Inactivo"))
+                            ||
+                            (listAsignacion.get(j).getUsuarioResponsable().getId() == bean.getUsuarioResponsable().getId() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getUsuarioResponsable().getEstatus().equals("Inactivo"))
+                            ||
+                            (listAsignacion.get(j).getEspacioFisico().getId_espacio_fisico() == bean.getEspacioFisico().getId_espacio_fisico() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getEspacioFisico().getEstatus().equals("Inactivo"))
+                            ||
+                            (listAsignacion.get(j).getProyecto().getId() == bean.getProyecto().getId() && listAsignacion.get(j).getEstatus().equals("Activo") || bean.getProyecto().getEstatus().equals("Inactivo"))) {
+                v = 1;
                 break;
             }
         }
         if (v == 0) {
-            if(dao.activarAsignacion(id_asignacion)){
+            if (dao.activarAsignacion(id_asignacion)) {
                 return SUCCESS;
-            }else{
+            } else {
                 return ERROR;
             }
             /*mensaje = "Activación exitosa";*/

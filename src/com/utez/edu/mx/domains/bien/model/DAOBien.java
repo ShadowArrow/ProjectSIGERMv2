@@ -32,7 +32,6 @@ public class DAOBien {
                 bean.setNo_serie(rs.getString("no_serie"));
                 bean.setEstatus(rs.getString("estatus"));
 
-                System.out.println("estatus antes de almacenarlo en la lista: " + bean.getEstatus());
 
                 listBien.add(bean);
             }

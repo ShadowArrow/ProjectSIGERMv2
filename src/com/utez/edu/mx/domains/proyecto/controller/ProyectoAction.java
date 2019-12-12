@@ -1,5 +1,7 @@
 package com.utez.edu.mx.domains.proyecto.controller;
 
+import com.utez.edu.mx.domains.asignacion.model.BeanAsignacion;
+import com.utez.edu.mx.domains.asignacion.model.DAOAsignacion;
 import com.utez.edu.mx.domains.proyecto.model.ProyectoBean;
 import com.utez.edu.mx.domains.proyecto.model.ProyectoDao;
 
@@ -77,12 +79,31 @@ public class ProyectoAction {
     }
 
     public String eliminarProyecto() {
-        if (dao.eliminarProyecto(bean.getId())) {
-            mensaje = "Eliminacion exitosa";
-        } else {
-            mensaje = "Error al eliminar";
+
+        DAOAsignacion daoAsignacion = new DAOAsignacion();
+        List<BeanAsignacion> listAsignacion = new ArrayList<BeanAsignacion>();
+        listAsignacion = daoAsignacion.MostraAsignaciones();
+        int v = 0;
+        for (int i = 0; i < listAsignacion.size(); i++) {
+
+            if (listAsignacion.get(i).getProyecto().getId() == bean.getId() && listAsignacion.get(i).getEstatus().equals("Activo")) {
+
+                v = 1;
+                break;
+            }
         }
-        return SUCCESS;
+        if (v == 0) {
+            if (dao.eliminarProyecto(bean.getId())) {
+                mensaje = "Eliminacion exitosa";
+                return SUCCESS;
+            } else {
+                mensaje = "Error al eliminar";
+                return ERROR;
+            }
+        } else {
+            mensaje = "El proyecto esta asignado, no se puede eliminar";
+            return ERROR;
+        }
     }
 
     public String activarProyecto() {
@@ -94,4 +115,4 @@ public class ProyectoAction {
             return ERROR;
         }
     }
-    }
+}

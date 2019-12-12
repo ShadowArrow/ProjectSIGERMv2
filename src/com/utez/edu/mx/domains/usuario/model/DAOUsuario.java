@@ -115,7 +115,6 @@ public class DAOUsuario {
                 bean.setFechaEgreso(rs.getString("fecha_egreso"));
                 bean.setRol(rs.getString("rol"));
 
-                System.out.println("estatus antes de almacenarlo en la lista: " + bean.getEstatus());
 
                 listUsuario.add(bean);
             }

@@ -143,7 +143,6 @@ public class DAOAsignacion {
                 bean.setProyecto(proyecto);
                 bean.setEstatus(rs.getString("Asignacion.estatus"));
 
-                System.out.println("estatus antes de almacenarlo en la lista: " + bean.getEstatus());
 
                 listAsignacion.add(bean);
             }
@@ -448,7 +447,6 @@ public class DAOAsignacion {
                 bean.setProyecto(proyecto);
                 bean.setEstatus(rs.getString("Asignacion.estatus"));
 
-                System.out.println("estatus antes de almacenarlo en la lista: " + bean.getEstatus());
 
             }
         } catch (SQLException e) {

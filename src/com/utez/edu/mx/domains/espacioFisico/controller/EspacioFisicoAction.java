@@ -1,5 +1,7 @@
 package com.utez.edu.mx.domains.espacioFisico.controller;
 
+import com.utez.edu.mx.domains.asignacion.model.BeanAsignacion;
+import com.utez.edu.mx.domains.asignacion.model.DAOAsignacion;
 import com.utez.edu.mx.domains.espacioFisico.model.EspacioFisicoBean;
 import com.utez.edu.mx.domains.espacioFisico.model.EspacioFisicoDao;
 import com.utez.edu.mx.domains.usuario.model.BeanUsuario;
@@ -100,13 +102,30 @@ public class EspacioFisicoAction {
     }
 
     public String eliminarEspacioFisico() {
-        if (espacioFisicoDao.eliminarEspacioFisico(espacioFisicoBean.getId_espacio_fisico())) {
-            mensaje = "Eliminacion exitosa";
-        } else {
-            mensaje = "Error al eliminar";
+        DAOAsignacion daoAsignacion = new DAOAsignacion();
+        List<BeanAsignacion> listAsignacion = new ArrayList<BeanAsignacion>();
+        listAsignacion = daoAsignacion.MostraAsignaciones();
+        int v = 0;
+        for (int i = 0; i < listAsignacion.size(); i++) {
+
+            if (listAsignacion.get(i).getEspacioFisico().getId_espacio_fisico() == espacioFisicoBean.getId_espacio_fisico() && listAsignacion.get(i).getEstatus().equals("Activo")) {
+
+                v = 1;
+                break;
+            }
         }
-        System.out.println("Mensaje" + mensaje);
-        return SUCCESS;
+        if (v == 0) {
+            if (espacioFisicoDao.eliminarEspacioFisico(espacioFisicoBean.getId_espacio_fisico())) {
+                mensaje = "Eliminacion exitosa";
+                return SUCCESS;
+            } else {
+                mensaje = "Error al eliminar";
+                return ERROR;
+            }
+        } else {
+            mensaje = "El proyecto esta asignado, no se puede eliminar";
+            return ERROR;
+        }
     }
 
     public String activarEspacioFisico() {

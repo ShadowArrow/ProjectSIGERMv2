@@ -20,7 +20,7 @@ public class BienAction {
     private DAOAsignacion daoAsignacion = new DAOAsignacion();
     private List<BeanAsignacion> listAsignacion = new ArrayList<BeanAsignacion>();
     private List<BeanBien> listBien = new ArrayList<BeanBien>();
-private int id;
+    private int id;
 
     public int getId() {
         return id;
@@ -79,14 +79,14 @@ private int id;
 
     public String EliminarBien() {
         listAsignacion = daoAsignacion.MostraAsignaciones();
-        int v=0;
-        for (int i=0; i<listAsignacion.size(); i++){
-            if(listAsignacion.get(i).getBien().getId_bien() == bean.getId_bien() && listAsignacion.get(i).getEstatus().equals("Activo")){
+        int v = 0;
+        for (int i = 0; i < listAsignacion.size(); i++) {
+            if (listAsignacion.get(i).getBien().getId_bien() == bean.getId_bien() && listAsignacion.get(i).getEstatus().equals("Activo")) {
                 v = 1;
                 break;
             }
         }
-        if (v==0){
+        if (v == 0) {
             if (dao.EliminarBien(bean)) {
                 mensajeBien = "El usuario ha sido eliminado con exito";
                 return SUCCESS;
@@ -94,21 +94,21 @@ private int id;
                 mensajeBien = "El usuario no ha sido eliminado con exito";
                 return ERROR;
             }
-        }else{
+        } else {
             return ERROR;
         }
 
     }
 
-    public String ConsultaEspecificaBien(){
+    public String ConsultaEspecificaBien() {
         bean = dao.ConsultaEspecificaBien(id);
         return SUCCESS;
     }
 
-    public String ModificarBien(){
-        if(dao.ModificarBien(bean)){
+    public String ModificarBien() {
+        if (dao.ModificarBien(bean)) {
             return SUCCESS;
-        }else{
+        } else {
             return ERROR;
         }
     }
@@ -123,7 +123,7 @@ private int id;
         }
     }
 
-    public String MostrarFormularioModificar(){
+    public String MostrarFormularioModificar() {
         bean = dao.ConsultaEspecificaBien(id);
         return SUCCESS;
     }

@@ -2,26 +2,7 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <% String context = request.getContextPath();%>
 <html>
-<s:if test="mensaje=='registrar'">
-    <script>
-        alert("Registro exitoso");
-    </script>
-</s:if>
-<s:if test="mensaje=='modificar'">
-    <script>
-        alert("Modificación exitosa");
-    </script>
-</s:if>
-<s:if test="mensaje=='sin'">
-    <script>
-        alert("No existen registros");
-    </script>
-</s:if>
-<s:if test="mensaje=='error'">
-    <script>
-        alert("Ocurrió un error inesperado");
-    </script>
-</s:if>
+
 <s:if test="#session.usuario.correoInstitucional==null">
     <script>
         window.location.href = "<%=context%>/index.jsp";
@@ -100,7 +81,7 @@
             <!-- side-menu -->
             <ul class="nav" id="side-menu">
                 <li class="" style="padding-top: 15px; padding-left: -15px;">
-                    <a href="<%=context%>/inicio">
+                    <a href="<%=context%>/inicio_rpbsi">
                         <i class="fa fa-user fa-fw" aria-hidden="true"></i> Mi perfil
                     </a>
                 </li>

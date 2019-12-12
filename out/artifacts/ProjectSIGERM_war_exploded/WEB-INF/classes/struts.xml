@@ -168,6 +168,7 @@
                 class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"
                 method="eliminarEspacioFisico">
             <result type="redirectAction" name="success">consultarEspacioFisicos</result>
+            <result type="redirectAction" name="error">consultarEspacioFisicos</result>
         </action>
 
         <action name="activarEspacioFisico" class="com.utez.edu.mx.domains.espacioFisico.controller.EspacioFisicoAction"

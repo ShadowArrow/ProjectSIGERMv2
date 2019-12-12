@@ -25,6 +25,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Core CSS - Include with every page -->
+
+    <script src="<%=context%>/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="<%=context%>/js/jquery-3.4.1.min.js"></script>
     <link href="<%=context%>/plugins/bootstrap/bootstrap.css" rel="stylesheet"/>
     <link href="<%=context%>/fonts/contenido/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <link href="<%=context%>/plugins/pace/pace-theme-big-counter.css" rel="stylesheet"/>
@@ -294,12 +297,13 @@
                                       style="max-width: 100%; min-width: 100%; max-height: 20%; min-height: 10%;"></textarea>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success" >Guardar</button>
+                    </div>
+                </form>
+            </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" onclick="registrarBien.submit()">Guardar</button>
-            </div>
         </div>
         </form>
     </div>
@@ -441,12 +445,13 @@
                                       style="max-width: 100%; min-width: 100%; max-height: 20%; min-height: 10%;"></textarea>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Actualizar</button>
+                    </div>
+                </form>
+            </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" onclick="modificarBien.submit()">Actualizar</button>
-            </div>
             </form>
         </div>
     </div>

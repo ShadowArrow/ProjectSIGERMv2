@@ -226,7 +226,7 @@
                 </table>
             </div>
             <div class="modal-body">
-                <form method="post" action="registrarEspacioFisico.action">>
+                <form method="post" action="registrarEspacioFisico.action">
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-6">
                             <label>Nombre</label>
